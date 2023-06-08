@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div>
-      <form>
+      <form className={styles.form}>
         <h2>Página de Entrada</h2>
 
         <label htmlFor="username">Usuário:</label>
@@ -13,6 +13,7 @@ export default function Home() {
           id="username"
           name="username"
           placeholder="Digite seu usuário"
+          className={styles.input}
         />
 
         <label htmlFor="password">Senha:</label>
@@ -21,12 +22,13 @@ export default function Home() {
           id="password"
           name="password"
           placeholder="Digite sua senha"
+          className={styles.input}
         />
 
-        <a className="botao">
+        <a className={styles.botao}>
           Login
         </a>
-        <a href="cadastro" className="botao">
+        <a href="cadastro" className={styles.botao}>
           Cadastro
         </a>
       </form>
