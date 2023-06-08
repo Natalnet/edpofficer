@@ -23,10 +23,10 @@ export default function Home() {
           placeholder="Digite sua senha"
         />
 
-        <a href="cadastro.js" className="botao">
+        <a className="botao">
           Login
         </a>
-        <a href="cadastro.js" className="botao">
+        <a href="cadastro" className="botao">
           Cadastro
         </a>
       </form>
