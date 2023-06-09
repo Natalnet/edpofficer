@@ -1,8 +1,10 @@
-import styles from "./page.module.css";
+import Navbar from "../components/Navbar";
+import styles from "../styles/page.module.css";
 
-export default function Cadastro() {
+export default function Register() {
   return (
     <div>
+      <Navbar />
       <form className={styles.form}>
         <h2>Cadastro</h2>
 
@@ -25,12 +27,13 @@ export default function Cadastro() {
         />
 
         <label htmlFor="cpf">CPF:</label>
-        <input 
-        type="text" 
-        id="cpf" 
-        name="cpf" 
-        placeholder="Digite seu CPF"
-        className={styles.input} />
+        <input
+          type="text"
+          id="cpf"
+          name="cpf"
+          placeholder="Digite seu CPF"
+          className={styles.input}
+        />
 
         <label htmlFor="documents">Documentos:</label>
         <input type="file" id="documents" name="documents" />

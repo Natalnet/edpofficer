@@ -1,12 +1,14 @@
+import Navbar from "../components/Navbar";
+import Link from "next/link";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "../styles/page.module.css";
 
 export default function Home() {
   return (
     <div>
+      <Navbar />
       <form className={styles.form}>
         <h2>Página de Entrada</h2>
-
         <label htmlFor="username">Usuário:</label>
         <input
           type="text"
@@ -25,9 +27,7 @@ export default function Home() {
           className={styles.input}
         />
 
-        <a className={styles.botao}>
-          Login
-        </a>
+        <a className={styles.botao}>Login</a>
         <a href="cadastro" className={styles.botao}>
           Cadastro
         </a>
