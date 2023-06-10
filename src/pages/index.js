@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/page.module.css";
@@ -6,7 +5,6 @@ import styles from "../styles/page.module.css";
 export default function Home() {
   return (
     <div className={styles.body}>
-      <Navbar />
       <form className={styles.form}>
         <h2>Página de Entrada</h2>
         <label htmlFor="username">Usuário:</label>
