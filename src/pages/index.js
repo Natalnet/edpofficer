@@ -5,7 +5,7 @@ import styles from "../styles/page.module.css";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.body}>
       <Navbar />
       <form className={styles.form}>
         <h2>Página de Entrada</h2>
@@ -28,7 +28,7 @@ export default function Home() {
         />
 
         <a className={styles.botao}>Login</a>
-        <a href="cadastro" className={styles.botao}>
+        <a href="register" className={styles.botao}>
           Cadastro
         </a>
       </form>
