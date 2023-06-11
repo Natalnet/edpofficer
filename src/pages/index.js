@@ -4,7 +4,7 @@ import styles from "../styles/page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.body}>
+    <div className={styles.main}>
       <form className={styles.form}>
         <h2>Página de Entrada</h2>
         <label htmlFor="username">Usuário:</label>
