@@ -8,74 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model endereco_bd {
-  id            Int        @id(map: "endereco_bd_pk") @default(autoincrement())
-  usuario_bd_id Int
-  rua           String     @db.VarChar(255)
-  numero        Int
-  usuario_bd    usuario_bd @relation(fields: [usuario_bd_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "endereco_usuario_bd")
-}
-
-model interesse {
-  id         Int        @id(map: "interesse_pk") @default(autoincrement())
-  usuario_id Int
-  materia_id Int
-  s1_materia s1_materia @relation(fields: [materia_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "table_3_materia")
-  s1_usuario s1_usuario @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "table_3_usuario")
-}
-
-model papel {
-  id            Int             @id(map: "papel_pk") @default(autoincrement())
-  nome          String          @db.VarChar(250)
-  usuario_papel usuario_papel[]
-}
-
-model s1_materia {
-  id        Int         @id(map: "s1_materia_pk") @default(autoincrement())
-  nome      String      @db.VarChar(255)
-  interesse interesse[]
-}
-
-model s1_usuario {
-  id        Int         @id(map: "s1_usuario_pk") @default(autoincrement())
-  email     String      @db.VarChar(250)
-  senha     String      @db.VarChar(40)
-  interesse interesse[]
-}
-
-model usuario {
-  id    Int    @id @default(autoincrement())
-  nome  String @db.VarChar(40)
-  email String @db.VarChar(40)
-  senha String @db.VarChar(40)
-}
-
-model usuario_ {
-  id            Int             @id(map: "usuario__pk") @default(autoincrement())
-  email         String          @db.VarChar(250)
-  usuario_papel usuario_papel[]
-}
-
-model usuario_bd {
-  id          Int           @id(map: "usuario_bd_pk") @default(autoincrement())
-  email       String        @db.VarChar(255)
-  senha       String        @db.VarChar(255)
-  endereco_bd endereco_bd[]
-}
-
-model usuario_papel {
-  id         Int      @id(map: "usuario_papel_pk") @default(autoincrement())
-  usuario_id Int
-  papel_id   Int
-  papel      papel    @relation(fields: [papel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "usuario_papel_papel")
-  usuario_   usuario_ @relation(fields: [usuario_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "usuario_papel_usuario")
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
   name      String?
+  password  String?
   role      Role     @default(USER)
   posts     Post[]
 }
@@ -86,8 +24,8 @@ model Post {
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
   title     String   @db.VarChar(255)
-  author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
+  author    User?    @relation(fields: [authorId], references: [id])
 }
 
 enum Role {

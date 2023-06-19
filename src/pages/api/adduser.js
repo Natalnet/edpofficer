@@ -7,8 +7,9 @@ export default async function handler(req, res) {
         data: {
           email: req.body.email,
           name: req.body.nome,
+          password: req.body.password,
         },
       })
-    res.status(200).json("user add "+req.body.email)
+    res.status(200).json("user add :"+req.body.email)
 } 
 
