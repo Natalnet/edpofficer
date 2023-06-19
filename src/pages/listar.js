@@ -19,7 +19,7 @@ export default function listar() {
 
   return (
     <div>
-      <h2>Lista de usuários</h2>
+      <h2>Lista de usuários </h2>
       {
         state.map((e) => (
           <a key={e.id}>
