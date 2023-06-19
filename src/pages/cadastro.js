@@ -24,7 +24,7 @@ export default function cadastro() {
         try {
             event.preventDefault()
             console.log("entrando no handleForm..."+JSON.stringify(formData))
-            const response = await fetch('https://edpofficer.netlify.app/api/adduser', {
+            const response = await fetch('/api/adduser', {
                 method:'POST',
                 body: JSON.stringify(formData),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
