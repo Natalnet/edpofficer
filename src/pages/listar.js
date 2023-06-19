@@ -7,7 +7,7 @@ export default function listar() {
   const [state, setState] = useState([]);
 
   async function getData() {
-    const res = await fetch('/api/listusers');
+    const res = await fetch('https://edpofficer.netlify.app/api/listusers');
     const data = await res.json();
     console.log("pegou os dados....")
     setState(data);
