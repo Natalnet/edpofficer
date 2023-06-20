@@ -10,8 +10,8 @@ export default function Navbar() {
           className={styles.logo}
           src="/images/project-logo.png"
           alt="Logo"
-          width="300"
-          height="90"
+          width="170"
+          height="50"
         />
         <ul className={styles.link_items}>
           <Link href="/">
