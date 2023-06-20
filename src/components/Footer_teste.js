@@ -6,19 +6,19 @@ const Footer_teste = () => {
             <footer className="py-3 my-4">
                 <ul className="nav justify-content-center border-bottom pb-3 mb-3">
                     <li className="nav-item">
-                        <a href="/" className="nav-link px-2 text-muted">
+                        <Link href="/" className="nav-link px-2 text-muted">
                             Início
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className="nav-link px-2 text-muted">
+                        <Link href="#" className="nav-link px-2 text-muted">
                             Serviços
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className="nav-link px-2 text-muted">
+                        <Link href="#" className="nav-link px-2 text-muted">
                             Sobre nós
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <p className="text-center text-muted"><strong>Natalnet</strong> © 2023 Company, Inc</p>

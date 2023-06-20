@@ -7,10 +7,9 @@ const Navbar_teste = () => {
         <header className="p-3 bg-dark text-white">
             <div className="container">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a
+                    <Link
                         href="#"
                         className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-
                     >
                         <Image
                             className={styles.logo}
@@ -19,23 +18,23 @@ const Navbar_teste = () => {
                             width="170"
                             height="50"
                         />
-                    </a>
+                    </Link>
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 link_items">
                         <li>
                             <Link href="/" className="nav-link px-2 text-white">
-                                <li>Início</li>
+                                Início
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="nav-link px-2 text-white">
+                            <Link href="#" className="nav-link px-2 text-white">
                                 Serviços
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="nav-link px-2 text-white">
+                            <Link href="#" className="nav-link px-2 text-white">
                                 Sobre nós
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
