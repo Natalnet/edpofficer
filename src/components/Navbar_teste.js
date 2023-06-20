@@ -27,12 +27,12 @@ const Navbar_teste = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="nav-link px-2 text-white">
+                            <Link href="services" className="nav-link px-2 text-white">
                                 Serviços
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="nav-link px-2 text-white">
+                            <Link href="about" className="nav-link px-2 text-white">
                                 Sobre nós
                             </Link>
                         </li>

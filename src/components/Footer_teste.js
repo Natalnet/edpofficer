@@ -11,12 +11,12 @@ const Footer_teste = () => {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link href="#" className="nav-link px-2 text-muted">
+                        <Link href="services" className="nav-link px-2 text-muted">
                             Serviços
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link href="#" className="nav-link px-2 text-muted">
+                        <Link href="about" className="nav-link px-2 text-muted">
                             Sobre nós
                         </Link>
                     </li>
