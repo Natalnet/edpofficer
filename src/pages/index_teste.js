@@ -19,11 +19,11 @@ export default function Home() {
         </div>
         <div className={styles.rightlogin}>
           <div className={styles.cardlogin}>
-            <Image
+            <Image className={styles.landingimage}
               src="/images/indeximage.svg"
               width="600"
               height="600"
-              alt=""
+              alt="landingimage"
             />
           </div>
         </div>

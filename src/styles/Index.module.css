@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
 .mainlogin {
   width: 100vw;
   height: 100vh;
@@ -13,12 +15,13 @@
 }
 
 .leftlogin {
-  width: 50vw;  
+  width: 50vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .leftlogin > h1 {
@@ -37,4 +40,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 950px) {
+  .mainlogin {
+    width: auto;
+    height: auto;
+  }
+  .landingimage {
+    width: 50vw;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mainlogin {
+    flex-direction: column;
+    width: auto;
+    height: auto;
+  }
+  .leftlogin {
+    width: 100%;
+    height: auto;
+  }
+  .rightlogin {
+    width: 100%;
+    height: auto;
+  }
+  .landingimage {
+    width: 50vw;
+    height: auto;
+  }
 }
