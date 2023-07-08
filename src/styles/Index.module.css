@@ -3,10 +3,12 @@
 .mainlogin {
   width: 100vw;
   height: 100vh;
+  background: rgb(74, 66, 213);
   background: linear-gradient(
     90deg,
-    rgb(22, 140, 219) 0%,
-    rgb(52, 26, 223) 100%
+    rgba(74, 66, 213, 1) 0%,
+    rgba(21, 61, 201, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
   );
   display: flex;
   justify-content: center;
