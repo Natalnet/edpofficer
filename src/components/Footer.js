@@ -1,13 +1,14 @@
 import Link from "next/link";
+import Styles from "../styles/Footer.module.css"
 
-const Footer_teste = () => {
+const Footer = () => {
     return (
-        <div className="container">
+        <div className="container ">
             <footer className="py-3 my-4">
-                <p className="text-center text-muted"><strong>Natalnet</strong> © 2023 Company, Inc</p>
+                <p className="text-center text"><strong>Natalnet</strong> © 2023 Company, Inc</p>
             </footer>
         </div>
     );
 };
 
-export default Footer_teste;
+export default Footer;

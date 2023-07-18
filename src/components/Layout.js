@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Head from "next/head";
@@ -7,17 +8,27 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children }) {
+  useEffect(() => {
+
+    const addBootstrapStylesheet = () => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css";
+      link.integrity =
+        "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1";
+      link.crossOrigin = "anonymous";
+      document.head.appendChild(link);
+    };
+
+    addBootstrapStylesheet();
+  }, []);
+
   return (
     <>
       <Head>
         <link rel="favicon" href="../images/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-          crossOrigin="anonymous"
-        />
         <title>EdpOfficer</title>
       </Head>
       {/* <Navbar/> */}

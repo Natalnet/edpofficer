@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import Link from "next/link";
 import style from "@/styles/Service.module.css";
 
@@ -176,7 +175,7 @@ export default function Services() {
               <option value="PI">PI</option>
               <option value="PR">PR</option>
               <option value="RJ">RJ</option>
-              <option value="RN" selected>
+              <option value="RN" defaultValue>
                 RN
               </option>
               <option value="RO">RO</option>

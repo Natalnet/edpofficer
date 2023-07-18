@@ -2,7 +2,7 @@ import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const Navbar_teste = () => {
+const Navbar = () => {
   return (
     <header className="p-3 bg-white text-white">
       <div className="container">
@@ -15,8 +15,9 @@ const Navbar_teste = () => {
               className={styles.logo}
               src="/images/newlogoNavbar.svg"
               alt="Logo"
-              width="170"
-              height="50"
+              width={170}
+              height={50}
+              priority
             />
           </Link>
 
@@ -51,4 +52,4 @@ const Navbar_teste = () => {
     </header>
   );
 };
-export default Navbar_teste;
+export default Navbar;
