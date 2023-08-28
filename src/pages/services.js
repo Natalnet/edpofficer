@@ -6,88 +6,104 @@ export default function Services() {
     <>
       <div className={style.container}>
         <form className={style.form}>
-          <h2>
-            FORMULÁRIO PARA EXERCÍCIO DOS DIREITOS DO TITULAR DOS DADOS PESSOAIS
-          </h2>
-          <h3>
-            Conforme os Artigos 17 a 22 da Lei 13.709/2018 (Lei Geral de
-            Proteção de Dados Pessoais)
-          </h3>
-          <h4>
-            ATENÇÃO – De acordo com o texto do artigo 11, II da LGPD, o Tribunal
-            Regional do Trabalho da 21ª Região, possui o direito de tratar os
-            dados pessoais sensíveis, sem a necessidade de fornecimento de
-            consentimento de seu titular, pois está respaldado em função de sua
-            atividade fim, legitimada no exercício regular de direitos, entre
-            estes o contrato e o processo judicial, administrativo e arbitral.
-            Também, o Tribunal, na mesma condição, poderá tratar dados pessoais
-            sensíveis, quando se tratar de obrigação legal ou regulatória de seu
-            controlador; nos casos de proteção da vida ou da incolumidade física
-            do titular ou de terceiros; quando for para garantir e prevenir
-            fraude e a segurança do titular; nos processos de identificação e
-            autenticação de cadastro em sistemas eletrônicos; entre outros casos
-            previstos na Lei.
-          </h4>
-          <h3>1. Campos obrigatórios para o Titular dos Dados:</h3>
-          <label htmlFor="name">Nome completo *:</label>
-          <input
-            type="text"
-            id="nomeCompleto"
-            name="nomeCompleto"
-            placeholder="Digite o nome completo"
-            className={style.input}
-          />
-
-          <label htmlFor="email">Email*</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Digite seu email"
-            className={style.input}
-          />
-
-          <label htmlFor="nomeSocial">
-            <br />
-            Nome Social{" "}
-          </label>
-          <input
-            type="text"
-            id="nomeSocial"
-            name="nomeSocial"
-            placeholder="Digite o nome social"
-            className={style.input}
-          />
-
-          <label htmlFor="cpf">CPF*</label>
-          <input
-            type="number"
-            id="cpf"
-            name="cpf"
-            placeholder="Digite seu CPF"
-            className={style.input}
-          />
-
-          <label htmlFor="dataNascimento">
-            <br />
-            Data de Nascimento *
-          </label>
-          <input
-            type="date"
-            id="dataNascimento"
-            name="dataNascimento"
-            className={style.input}
-          />
-
-          <label htmlFor="telefone">Telefone </label>
-          <input
-            type="number"
-            id="telefone"
-            name="telefone"
-            placeholder="Digite seu Telefone"
-            className={style.input}
-          />
-
+          <div className="form-nome">
+            <h2>
+              FORMULÁRIO PARA EXERCÍCIO DOS DIREITOS DO TITULAR DOS DADOS
+              PESSOAIS
+            </h2>
+          </div>
+          <div className="form-nome-desc">
+            <h3>
+              Conforme os Artigos 17 a 22 da Lei 13.709/2018 (Lei Geral de
+              Proteção de Dados Pessoais)
+            </h3>
+          </div>
+          <div>
+            <h4>
+              ATENÇÃO – De acordo com o texto do artigo 11, II da LGPD, o
+              Tribunal Regional do Trabalho da 21ª Região, possui o direito de
+              tratar os dados pessoais sensíveis, sem a necessidade de
+              fornecimento de consentimento de seu titular, pois está respaldado
+              em função de sua atividade fim, legitimada no exercício regular de
+              direitos, entre estes o contrato e o processo judicial,
+              administrativo e arbitral. Também, o Tribunal, na mesma condição,
+              poderá tratar dados pessoais sensíveis, quando se tratar de
+              obrigação legal ou regulatória de seu controlador; nos casos de
+              proteção da vida ou da incolumidade física do titular ou de
+              terceiros; quando for para garantir e prevenir fraude e a
+              segurança do titular; nos processos de identificação e
+              autenticação de cadastro em sistemas eletrônicos; entre outros
+              casos previstos na Lei.
+            </h4>
+          </div>
+          <div>
+            <h3>1. Campos obrigatórios para o Titular dos Dados:</h3>
+          </div>
+          <div className="nome-completo">
+            <label htmlFor="name">Nome completo *:</label>
+            <input
+              type="text"
+              id="nomeCompleto"
+              name="nomeCompleto"
+              placeholder="Digite o nome completo"
+              className={style.input}
+            />
+          </div>
+          <div className="email">
+            <label htmlFor="email">Email*</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Digite seu email"
+              className={style.input}
+            />
+          </div>
+          <div className="nome-social">
+            <label htmlFor="nomeSocial">
+              <br />
+              Nome Social{" "}
+            </label>
+            <input
+              type="text"
+              id="nomeSocial"
+              name="nomeSocial"
+              placeholder="Digite o nome social"
+              className={style.input}
+            />
+          </div>
+          <div className="cpf">
+            <label htmlFor="cpf">CPF*</label>
+            <input
+              type="number"
+              id="cpf"
+              name="cpf"
+              placeholder="Digite seu CPF"
+              className={style.input}
+            />
+          </div>
+          <div className="data-nascimento">
+            <label htmlFor="dataNascimento">
+              <br />
+              Data de Nascimento *
+            </label>
+            <input
+              type="date"
+              id="dataNascimento"
+              name="dataNascimento"
+              className={style.input}
+            />
+          </div>
+          <div className="telefone">
+            <label htmlFor="telefone">Telefone </label>
+            <input
+              type="number"
+              id="telefone"
+              name="telefone"
+              placeholder="Digite seu Telefone"
+              className={style.input}
+            />
+          </div>
           <h3>
             2. Campos obrigatórios para o responsável legal de Titular dos Dados
             criança e/ou adolescente e curatelados:

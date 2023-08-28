@@ -3,12 +3,17 @@
 .mainlogin {
   width: auto;
   height: 80vh;
-  background: rgb(74, 66, 213);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  height: 900px;
   background: linear-gradient(
-    90deg,
-    rgba(74, 66, 213, 1) 0%,
-    rgba(21, 61, 201, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
+    180deg,
+    #4b43c5,
+    #385bd5,
+    #2270e2,
+    #0c84ec,
+    #1397f3
   );
   display: flex;
   justify-content: center;

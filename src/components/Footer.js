@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Styles from "../styles/Footer.module.css"
 
-const Footer = () => {
+export default function Footer () {
     return (
         <div className="container ">
             <footer className="py-3 my-4">
@@ -9,6 +9,4 @@ const Footer = () => {
             </footer>
         </div>
     );
-};
-
-export default Footer;
+}
