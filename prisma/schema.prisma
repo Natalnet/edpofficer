@@ -8,24 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
-  password  String?
-  role      Role     @default(USER)
-  posts     Post[]
-}
+model Protocolo {
+  id                         Int      @id @default(autoincrement())
+  createdAt                  DateTime @default(now())
+  nomeCompleto               String
+  email                      String   @unique
+  cpf                        String
+  dataNascimento             String
+  telefone                   String
+  nomeSocial                 String?
+  nomeCompletoTitularLegal   String?
+  emailTitularLegal          String?
+  nomeSocialTitularLegal     String?
+  cpfTiularLegal             String?
+  dataNascimentoTitularLegal String?
+  telefoneTitularLegal       String?
+  servico                    String
+  estado                     String
+  cidade                     String
+  documentos                 String?
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  title     String   @db.VarChar(255)
-  authorId  Int?
-  author    User?    @relation(fields: [authorId], references: [id])
+  @@map("Protocolos")
 }
 
 enum Role {

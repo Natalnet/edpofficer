@@ -1,0 +1,60 @@
+{
+  "site": {
+    "title": "edpOfficer",
+    "base_url": "/",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_white": "/images/logo-light.png",
+    "logo_width": "160",
+    "logo_height": "50",
+    "logo_text": "edpOfficer logo"
+  },
+  "settings": {
+    "theme_switcher": true,
+    "default_theme": "system",
+    "pagination": 6,
+    "InnerPaginationOptions": {
+      "enableTop": false,
+      "enableBottom": true
+    },
+    "summary_length": 200,
+    "blog_folder": "posts"
+  },
+  "params": {
+    "tag_manager_id": "",
+    "footer_content": "Nós ajudamos a sua empresa com os requisitos e as exigências legais da LGPD, de modo que você possa concentrar os seus esforços e tempo no seu negócio.",
+    "copyright": "[Natalnet](http://www.natalnet.br/home/) © 2023 Company, Inc"
+  },
+  "metadata": {
+    "meta_author": "edpOfficer",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "edpOfficer"
+  },
+  "widgets": {
+    "about": {
+      "enable": false,
+      "content": "Nós ajudamos a sua empresa com os requisitos e as exigências legais da LGPD, de modo que você possa concentrar os seus esforços e tempo no seu negócio."
+    },
+    "featured_posts": {
+      "enable": false,
+      "title": "Blog Categories",
+      "showPost": 3
+    },
+    "categories": {
+      "enable": false,
+      "title": "Blog Categories"
+    },
+    "newsletter": {
+      "enable": false,
+      "title": "",
+      "content": "",
+      "privacy_policy_page": "",
+      "malichipm_url": ""
+    }
+  },
+  "disqus": {
+    "enable": false,
+    "shortname": "themefisher-template",
+    "settings": {}
+  }
+}
