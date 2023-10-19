@@ -1,6 +1,7 @@
 import Base from "@layouts/Baseof";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Services = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
@@ -28,7 +29,6 @@ const Services = () => {
     event.preventDefault();
 
     setEstaEnviando(true);
-    const dataNascimentoISO = new Date(dataNascimento).toISOString();
 
     handleForm();
   };
@@ -40,7 +40,7 @@ const Services = () => {
         email,
         nomeSocial,
         cpf,
-        dataNascimento: dataNascimentoISO,
+        dataNascimento,
         telefone,
         nomeCompletoTitularLegal,
         emailTitularLegal,
