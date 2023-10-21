@@ -1,9 +1,39 @@
 import React, { useEffect, useState } from "react";
-import Base from "@layouts/Baseof";
+import DataTable from "react-data-table-component";
+import { Button, Modal } from "react-bootstrap";
+import Head from "next/head";
 
-function MyPage() {
+export default function Dash() {
   const [dadosDoBanco, setDadosDoBanco] = useState([]);
-  const [carregando, setCarregando] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [erro, setErro] = useState("");
+  const [protocolo, setProtocoloClicado] = useState([]);
+  const [protocoloTemporario, setProtocoloTemporario] = useState();
+
+  const alterarModalProtocolo = async (protocolo_id) => {
+    // Encontra o protocolo correspondente no array dadosDoBanco
+    const protocolo = dadosDoBanco.find((p) => p.id === protocolo_id);
+
+    // Verifica se o protocolo foi encontrado antes de acessar suas propriedades
+    if (protocolo) {
+      // Atualiza o estado `protocolo` com os dados do protocolo
+      setProtocoloClicado(protocolo);
+    }
+  };
+
+  const abrirModal = (protocolo_id) => {
+    alterarModalProtocolo(protocolo_id);
+
+    // Armazena um valor temporário para o estado `protocolo`
+    setProtocoloTemporario(protocolo);
+
+    // Abre o modal
+    setIsModalVisible(true);
+  };
+
+  const fecharModal = () => {
+    setIsModalVisible(false);
+  };
 
   useEffect(() => {
     fetch("/api/formadd")
@@ -11,68 +41,210 @@ function MyPage() {
       .then((data) => {
         console.log(data);
         setDadosDoBanco(data);
-        setCarregando(false);
       })
       .catch((error) => console.error("Erro ao buscar dados:", error));
   }, []);
 
   return (
-    <Base>
+    <>
+      <Head>
+        <title>Overview | edpOfficer</title>
+      </Head>
       <div className="py-12">
         <div className="container rounded border border-border p-6 dark:border-darkmode-border">
           <h1>Dados do Banco de Dados</h1>
-          {carregando ? (
-            <p>Carregando dados...</p>
-          ) : (
-            <table>
-              <thead className="bg-white  py-4">
-                <tr>
-                  <th>ID</th>
-                  <th>Nome Completo</th>
-                  <th>Email</th>
-                  <th>Nome Social</th>
-                  <th>CPF</th>
-                  <th>Telefone</th>
-                  <th>Nome Completo Titular Legal</th>
-                  <th>Email Titular Legal</th>
-                  <th>Nome Social Titular Legal</th>
-                  <th>CPF Titular Legal</th>
-                  <th>Data de Nascimento Titular Legal</th>
-                  <th>Telefone Titular Legal</th>
-                  <th>Serviço</th>
-                  <th>Estado</th>
-                  <th>Cidade</th>
-                  <th>Documentos</th>{" "}
-                </tr>
-              </thead>
-              <tbody>
-                {dadosDoBanco.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.nomeCompleto}</td>
-                    <td>{row.email}</td>
-                    <td>{row.nomeSocial}</td>
-                    <td>{row.cpf}</td>
-                    <td>{row.telefone}</td>
-                    <td>{row.nomeCompletoTitularLegal}</td>
-                    <td>{row.emailTitularLegal}</td>
-                    <td>{row.nomeSocialTitularLegal}</td>
-                    <td>{row.cpfTiularLegal}</td>
-                    <td>{row.dataNascimentoTitularLegal}</td>
-                    <td>{row.telefoneTitularLegal}</td>
-                    <td>{row.servico}</td>
-                    <td>{row.estado}</td>
-                    <td>{row.cidade}</td>
-                    <td>{row.documentos}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+          <DataTable
+            id="tabela-protocolos"
+            className=" table-primary table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl"
+            columns={[
+              {
+                name: "ID",
+                selector: "id",
+                sortable: true,
+                cell: (dadosDoBanco) => (
+                  <button
+                    type="button"
+                    className="btn btn-info btn-lg"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    onClick={() => abrirModal(dadosDoBanco.id)}
+                  >
+                    #
+                  </button>
+                ),
+              },
+              {
+                name: "Nome Completo",
+                selector: "nomeCompleto",
+                sortable: true,
+              },
+              { name: "Email", selector: "email", sortable: true },
+              { name: "Nome Social", selector: "nomeSocial", sortable: true },
+              { name: "CPF", selector: "cpf", sortable: true },
+              { name: "Telefone", selector: "telefone", sortable: true },
+              {
+                name: "Nome Completo Titular Legal",
+                selector: "nomeCompletoTitularLegal",
+                sortable: true,
+              },
+              {
+                name: "Email Titular Legal",
+                selector: "emailTitularLegal",
+                sortable: true,
+              },
+              {
+                name: "Nome Social Titular Legal",
+                selector: "nomeSocialTitularLegal",
+                sortable: true,
+              },
+              {
+                name: "CPF Titular Legal",
+                selector: "cpfTiularLegal",
+                sortable: true,
+              },
+              {
+                name: "Data de Nascimento Titular Legal",
+                selector: "dataNascimentoTitularLegal",
+                sortable: true,
+              },
+              {
+                name: "Telefone Titular Legal",
+                selector: "telefoneTitularLegal",
+                sortable: true,
+              },
+              { name: "Serviço", selector: "servico", sortable: true },
+              { name: "Estado", selector: "estado", sortable: true },
+              { name: "Cidade", selector: "cidade", sortable: true },
+              { name: "Documentos", selector: "documentos", sortable: true },
+            ]}
+            data={dadosDoBanco}
+            pagination
+            fixedHeader
+          />
         </div>
       </div>
-    </Base>
+      <Modal
+        show={isModalVisible}
+        onHide={fecharModal}
+        id="myModal"
+        role="dialog"
+      >
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
+          <div className="relative mx-auto my-6 w-2/3 max-w-6xl">
+            <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
+              <Modal.Header className="border-blueGray-200 flex items-start justify-between rounded-t border-b border-solid p-5">
+                <Modal.Title className="text-3xl font-semibold">
+                  Protocolo {protocolo && protocolo.id}
+                </Modal.Title>
+                <Button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  onClick={() => fecharModal()}
+                >
+                  &times;
+                </Button>
+              </Modal.Header>
+              <Modal.Body className="relative flex-auto bg-white p-1 p-6 shadow dark:bg-gray-700">
+                <div
+                  className="container ml-3 px-6 py-6 lg:px-8"
+                  id="informacoes-protocolo"
+                >
+                  <h6 className="pr-2 text-primary">
+                    <strong>Nome:</strong>
+                  </h6>
+                  <h6 className="text-secondary" id="nome_modal">
+                    {protocolo && protocolo.nomeCompleto}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Email:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.email}
+                  </h6>{" "}
+                  <div className="flex">
+                    <h6 className="pr-2 text-primary">
+                      <strong>Nome Social:</strong>
+                    </h6>
+                  </div>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.nomeSocial}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>CPF:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.cpf}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Telefone:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.telefone}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Nome Completo Titular Legal:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.nomeCompletoTitularLegal}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Email Titular Legal:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.emailTitularLegal}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>CPF Titular Legal:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.cpfTiularLegal}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Data de Nascimento Titular Legal:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.dataNascimentoTitularLegal}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Telefone Titular Legal:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.telefoneTitularLegal}
+                  </h6>
+                  <h6 className="pr-2 text-primary">
+                    <strong>Serviço:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.servico}
+                  </h6>
+                  <h6 className="text-primary">
+                    <strong>Estado:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.estado}
+                  </h6>
+                  <h6 className="text-primary">
+                    <strong>Cidade:</strong>
+                  </h6>
+                  <h6 className="text-secondary">
+                    {protocolo && protocolo.cidade}
+                  </h6>
+                  <div id="erro" className="mt-2">
+                    {erro}
+                  </div>
+                </div>
+                <Modal.Footer className="border-blueGray-200 flex items-center justify-end rounded-b border-t border-solid p-6">
+                  <button className="btn btn-outline-primary col-6">
+                    <i className="fa-solid fa-sliders mr-3"></i>
+                    Alterar dados
+                  </button>
+                </Modal.Footer>
+              </Modal.Body>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }
-
-export default MyPage;
