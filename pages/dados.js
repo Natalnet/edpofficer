@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Head from "next/head";
+import { Button, Grid } from "@mui/material";
+import { Sidebar } from "@layouts/components/sidebar";
 
 export default function Dash() {
   const [dadosDoBanco, setDadosDoBanco] = useState([]);
@@ -50,77 +52,90 @@ export default function Dash() {
       <Head>
         <title>Overview | edpOfficer</title>
       </Head>
-      <div className="py-12">
-        <div className="container rounded border border-border p-6 dark:border-darkmode-border">
-          <h1>Dados do Banco de Dados</h1>
-          <DataTable
-            id="tabela-protocolos"
-            className=" table-primary table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl"
-            columns={[
-              {
-                name: "ID",
-                selector: "id",
-                sortable: true,
-                cell: (dadosDoBanco) => (
-                  <button
-                    type="button"
-                    className="btn btn-info btn-lg"
-                    data-toggle="modal"
-                    data-target="#myModal"
-                    onClick={() => abrirModal(dadosDoBanco.id)}
-                  >
-                    #
-                  </button>
-                ),
-              },
-              {
-                name: "Nome Completo",
-                selector: "nomeCompleto",
-                sortable: true,
-              },
-              { name: "Email", selector: "email", sortable: true },
-              { name: "Nome Social", selector: "nomeSocial", sortable: true },
-              { name: "CPF", selector: "cpf", sortable: true },
-              { name: "Telefone", selector: "telefone", sortable: true },
-              {
-                name: "Nome Completo Titular Legal",
-                selector: "nomeCompletoTitularLegal",
-                sortable: true,
-              },
-              {
-                name: "Email Titular Legal",
-                selector: "emailTitularLegal",
-                sortable: true,
-              },
-              {
-                name: "Nome Social Titular Legal",
-                selector: "nomeSocialTitularLegal",
-                sortable: true,
-              },
-              {
-                name: "CPF Titular Legal",
-                selector: "cpfTiularLegal",
-                sortable: true,
-              },
-              {
-                name: "Data de Nascimento Titular Legal",
-                selector: "dataNascimentoTitularLegal",
-                sortable: true,
-              },
-              {
-                name: "Telefone Titular Legal",
-                selector: "telefoneTitularLegal",
-                sortable: true,
-              },
-              { name: "Serviço", selector: "servico", sortable: true },
-              { name: "Estado", selector: "estado", sortable: true },
-              { name: "Cidade", selector: "cidade", sortable: true },
-              { name: "Documentos", selector: "documentos", sortable: true },
-            ]}
-            data={dadosDoBanco}
-            pagination
-            fixedHeader
-          />
+      <div className="flex">
+        <Sidebar />
+        <div className="w-3/4 py-12">
+          <div className="container rounded border border-border p-6 dark:border-darkmode-border">
+            <h1>Últimos Protocolos</h1>
+            <DataTable
+              id="tabela-protocolos"
+              columns={[
+                {
+                  name: "ID",
+                  selector: "id",
+                  sortable: true,
+                  cell: (dadosDoBanco) => (
+                    <button
+                      type="button"
+                      className="btn btn-info btn-lg rounded p-1"
+                      onClick={() => abrirModal(dadosDoBanco.id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                        />
+                      </svg>
+                    </button>
+                  ),
+                },
+                {
+                  name: "Nome Completo",
+                  selector: "nomeCompleto",
+                  sortable: true,
+                },
+                { name: "Email", selector: "email", sortable: true },
+                { name: "Nome Social", selector: "nomeSocial", sortable: true },
+                { name: "CPF", selector: "cpf", sortable: true },
+                { name: "Telefone", selector: "telefone", sortable: true },
+                {
+                  name: "Nome Completo Titular Legal",
+                  selector: "nomeCompletoTitularLegal",
+                  sortable: true,
+                },
+                {
+                  name: "Email Titular Legal",
+                  selector: "emailTitularLegal",
+                  sortable: true,
+                },
+                {
+                  name: "Nome Social Titular Legal",
+                  selector: "nomeSocialTitularLegal",
+                  sortable: true,
+                },
+                {
+                  name: "CPF Titular Legal",
+                  selector: "cpfTiularLegal",
+                  sortable: true,
+                },
+                {
+                  name: "Data de Nascimento Titular Legal",
+                  selector: "dataNascimentoTitularLegal",
+                  sortable: true,
+                },
+                {
+                  name: "Telefone Titular Legal",
+                  selector: "telefoneTitularLegal",
+                  sortable: true,
+                },
+                { name: "Serviço", selector: "servico", sortable: true },
+                { name: "Estado", selector: "estado", sortable: true },
+                { name: "Cidade", selector: "cidade", sortable: true },
+                { name: "Documentos", selector: "documentos", sortable: true },
+              ]}
+              data={dadosDoBanco}
+              pagination
+              fixedHeader
+            />
+          </div>
         </div>
       </div>
       <Modal
