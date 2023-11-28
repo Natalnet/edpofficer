@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Button, Grid } from "@mui/material";
 import { Sidebar } from "@layouts/components/sidebar";
 
-export default function Dash() {
+export default function DashBoard() {
   const [dadosDoBanco, setDadosDoBanco] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [erro, setErro] = useState("");
