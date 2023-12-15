@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Modal } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import Head from "next/head";
-import { Button, Grid } from "@mui/material";
 import { Sidebar } from "@layouts/components/sidebar";
 
 export default function DashBoard() {
@@ -11,6 +10,7 @@ export default function DashBoard() {
   const [erro, setErro] = useState("");
   const [protocolo, setProtocoloClicado] = useState([]);
   const [protocoloTemporario, setProtocoloTemporario] = useState();
+  const [isEditing, setIsEditing] = useState(false);
 
   const alterarModalProtocolo = async (protocolo_id) => {
     // Encontra o protocolo correspondente no array dadosDoBanco
@@ -20,6 +20,16 @@ export default function DashBoard() {
     if (protocolo) {
       // Atualiza o estado `protocolo` com os dados do protocolo
       setProtocoloClicado(protocolo);
+    }
+  };
+
+  const buscarDados = async () => {
+    try {
+      const response = await fetch("/api/formadd");
+      const data = await response.json();
+      setDadosDoBanco(data);
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
     }
   };
 
@@ -35,17 +45,57 @@ export default function DashBoard() {
 
   const fecharModal = () => {
     setIsModalVisible(false);
+    setIsEditing(false);
+    buscarDados();
+  };
+
+  const toggleEditing = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const atualizarDados = async () => {
+    const url = `/api/${protocolo.id}`; // Substitua com a URL correta
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(protocolo),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Altera o estado de edição após salvar as alterações
+    toggleEditing();
+
+    return data;
   };
 
   useEffect(() => {
     fetch("/api/formadd")
-      .then((response) => response.json())
+      .then((response) => {
+        // Verifica se a resposta foi bem-sucedida, caso contrário, lança um erro
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
         setDadosDoBanco(data);
       })
-      .catch((error) => console.error("Erro ao buscar dados:", error));
+      .catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+      });
   }, []);
+
+  if (erro) {
+    return <div>{erro}</div>;
+  }
 
   return (
     <>
@@ -54,7 +104,7 @@ export default function DashBoard() {
       </Head>
       <div className="flex">
         <Sidebar />
-        <div className="w-3/4 py-12">
+        <div className="w-3/4 py-12 flex ml-7 mr-7">
           <div className="container rounded border border-border p-6 dark:border-darkmode-border">
             <h1>Últimos Protocolos</h1>
             <DataTable
@@ -67,7 +117,7 @@ export default function DashBoard() {
                   cell: (dadosDoBanco) => (
                     <button
                       type="button"
-                      className="btn btn-info btn-lg rounded p-1"
+                      className="btn btn-info btn-lg rounded p-1 items-center"
                       onClick={() => abrirModal(dadosDoBanco.id)}
                     >
                       <svg
@@ -145,8 +195,8 @@ export default function DashBoard() {
         role="dialog"
       >
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
-          <div className="relative mx-auto my-6 w-2/3 max-w-6xl">
-            <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
+          <div className="relative mx-auto my-6 w-6/12 max-w-6xl rounded border border-border">
+            <div className="relative flex w-full flex-col rounded-lg border-gray-400 bg-slate-100 shadow-lg outline-none focus:outline-none">
               <Modal.Header className="border-blueGray-200 flex items-start justify-between rounded-t border-b border-solid p-5">
                 <Modal.Title className="text-3xl font-semibold">
                   Protocolo {protocolo && protocolo.id}
@@ -160,7 +210,7 @@ export default function DashBoard() {
                   &times;
                 </Button>
               </Modal.Header>
-              <Modal.Body className="relative flex-auto bg-white p-1 p-6 shadow dark:bg-gray-700">
+              <Modal.Body className="relative flex-auto bg-zinc-50 p-1 p-6 shadow dark:bg-gray-700">
                 <div
                   className="container ml-3 px-6 py-6 lg:px-8"
                   id="informacoes-protocolo"
@@ -168,9 +218,22 @@ export default function DashBoard() {
                   <h6 className="pr-2 text-primary">
                     <strong>Nome:</strong>
                   </h6>
-                  <h6 className="text-secondary" id="nome_modal">
-                    {protocolo && protocolo.nomeCompleto}
-                  </h6>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={protocolo.nomeCompleto}
+                      onChange={(e) =>
+                        setProtocoloClicado({
+                          ...protocolo,
+                          nomeCompleto: e.target.value,
+                        })
+                      }
+                    />
+                  ) : (
+                    <h6 className="text-secondary" id="nome_modal">
+                      {protocolo && protocolo.nomeCompleto}
+                    </h6>
+                  )}
                   <h6 className="pr-2 text-primary">
                     <strong>Email:</strong>
                   </h6>
@@ -250,10 +313,21 @@ export default function DashBoard() {
                   </div>
                 </div>
                 <Modal.Footer className="border-blueGray-200 flex items-center justify-end rounded-b border-t border-solid p-6">
-                  <button className="btn btn-outline-primary col-6">
+                  <button
+                    className="btn btn-outline-primary col-6"
+                    onClick={toggleEditing}
+                  >
                     <i className="fa-solid fa-sliders mr-3"></i>
-                    Alterar dados
+                    {isEditing ? "Cancelar" : "Alterar dados"}
                   </button>
+                  {isEditing && (
+                    <button
+                      className="btn btn-primary col-6"
+                      onClick={atualizarDados}
+                    >
+                      Salvar alterações
+                    </button>
+                  )}
                 </Modal.Footer>
               </Modal.Body>
             </div>
